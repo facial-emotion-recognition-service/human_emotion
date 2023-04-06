@@ -1,1 +1,11 @@
+# Configuration
+.env
+
+#
+*.egg-info
+.coverage
+.ipynb_checkpoints
+.DS_Store
 raw_data/
+*.csv
+**/__pycache__/
