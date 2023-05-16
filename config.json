@@ -1,0 +1,12 @@
+{
+  "label_dict_text2num": {
+      "happiness": 0,
+      "surprise": 1,
+      "fear": 2,
+      "contempt": 3,
+      "anger": 4,
+      "neutrality": 5,
+      "sadness": 6,
+      "disgust": 7
+  }
+}
