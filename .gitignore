@@ -13,3 +13,6 @@ raw_data_fer2013/
 .vscode/
 build/
 dist/
+models/**
+images/**
+
