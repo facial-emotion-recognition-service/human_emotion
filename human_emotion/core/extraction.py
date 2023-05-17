@@ -26,8 +26,6 @@ def extract_faces(path):
 
     if type_ == 'img':
         img = cv.imread(path)
-    # Convert the image from BGR color (which OpenCV uses) to RGB
-    # color (which face_recognition uses)
     # Find all the faces in the current frame of video
     face_locations = face_recognition.face_locations(BGRtoRGB(img))
     for top, right, bottom, left in face_locations:
@@ -39,8 +37,8 @@ def extract_faces(path):
     cv.imwrite('/home/nathan/code/nihonlanguageprocessing/human_emotion/raw_data/faces_extraction/extracted1.jpg', img)
     cv.waitKey(0)
 
-
 def BGRtoRGB(img):
+
     return img[:, :, ::-1]
 
 if __name__ == '__main__':
