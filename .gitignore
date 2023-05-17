@@ -1,11 +1,18 @@
 # Configuration
 .env
 
-#
+# System files
 *.egg-info
 .coverage
 .ipynb_checkpoints
 .DS_Store
 raw_data/
+raw_data_fer2013/
 *.csv
 **/__pycache__/
+.vscode/
+build/
+dist/
+models/**
+images/**
+
