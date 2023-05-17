@@ -15,4 +15,5 @@ build/
 dist/
 models/**
 images/**
-
+input_images/**
+output_json/**
