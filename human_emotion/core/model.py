@@ -9,11 +9,14 @@ class model:
         for key, value in self.label_dict_text2num.items():
             self.label_dict_num2text[value] = key
 
-    def pre_process(face_image):
-        if type(face_image) != np.array():
+    @staticmethod
+    def preprocess(face_image):
+        if isinstance(face_image, str):
             img = tf.keras.preprocessing.image.load_img(
             face_image, target_size=(224, 224)
         )
             img_array = tf.keras.preprocessing.image.img_to_array(img)
         img_array = np.expand_dims(img_array, axis=0)
         img_array = tf.keras.applications.vgg16.preprocess_input(img_array)
+
+        return img_array

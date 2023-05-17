@@ -3,7 +3,7 @@ def get_face_emotions(model, face_image, top_n = 1, ret = 'text'):
     already isolated (but not the correct size)
     See get_face_emotions for function of top_n and ret parameters.'''
     img = model.preprocess(face_image)
-    predictions = model.predict(img)
+    predictions = model.model.predict(img)
 
     preds_sorted_indices = [
         i for i, _ in sorted(enumerate(predictions), key=lambda x: x[1], reverse=True)
