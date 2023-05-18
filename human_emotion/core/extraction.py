@@ -12,7 +12,7 @@ path = os.path.join(dir_,im_file)
 
 faces = []
 
-def get_type(path: str) -> str:
+def get_format(path: str) -> str:
     _, ext = os.path.splitext(path)
     if ext in IMAGES:
         return 'img'
@@ -21,26 +21,27 @@ def get_type(path: str) -> str:
     return None
 
 
-def extract_faces(path):
-    type_ = get_type(path)
+def extract_faces(path, display = False):
+    format = get_format(path)
 
-    if type_ == 'img':
+    if format == 'img':
         img = cv.imread(path)
-    # Convert the image from BGR color (which OpenCV uses) to RGB
-    # color (which face_recognition uses)
     # Find all the faces in the current frame of video
     face_locations = face_recognition.face_locations(BGRtoRGB(img))
-    for top, right, bottom, left in face_locations:
+    if display:
+        for top, right, bottom, left in face_locations:
         # Draw a box around the face
-        cv.rectangle(img, (left, top), (right, bottom), (0, 0,
-        255), 2)
-    # Display the resulting image
-    cv.imshow('Image', img)
-    cv.imwrite('/home/nathan/code/nihonlanguageprocessing/human_emotion/raw_data/faces_extraction/extracted1.jpg', img)
-    cv.waitKey(0)
+            cv.rectangle(img, (left, top), (right, bottom), (0, 0,
+            255), 2)
+        # Display the resulting image
+        cv.imshow('Image', img)
+        #cv.imwrite('/home/nathan/code/nihonlanguageprocessing/human_emotion/raw_data/faces_extraction/extracted1.jpg', img)
+        cv.waitKey(0)
 
+    return face_locations, img
 
 def BGRtoRGB(img):
+
     return img[:, :, ::-1]
 
 if __name__ == '__main__':
