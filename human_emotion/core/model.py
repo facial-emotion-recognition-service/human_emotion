@@ -16,7 +16,12 @@ class model:
             face_image, target_size=(224, 224)
         )
             img_array = tf.keras.preprocessing.image.img_to_array(img)
+        else:
+            img_array = face_image
         img_array = np.expand_dims(img_array, axis=0)
         img_array = tf.keras.applications.vgg16.preprocess_input(img_array)
 
         return img_array
+
+    def predict(self, img_array):
+        return self.model.predict(img_array)
