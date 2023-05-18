@@ -13,4 +13,5 @@ if __name__ == '__main__':
     model_ = model(model_path, config_data)
 
     img_path = 'raw_data/faces/anger/2Q__ (1)_face.png'
-    print(get_image_emotions(model_,img_path))
+    print(get_face_emotions(model_,img_path))
+    #print(get_image_emotions(model_,img_path))
