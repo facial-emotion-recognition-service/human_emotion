@@ -1,6 +1,7 @@
 import tensorflow as tf
 import numpy as np
 
+
 class model:
     def __init__(self, model_path, config_data):
         self.model = tf.keras.models.load_model(model_path, compile=True)
@@ -13,8 +14,8 @@ class model:
     def preprocess(face_image):
         if isinstance(face_image, str):
             img = tf.keras.preprocessing.image.load_img(
-            face_image, target_size=(224, 224)
-        )
+                face_image, target_size=(224, 224)
+            )
             img_array = tf.keras.preprocessing.image.img_to_array(img)
         else:
             img_array = face_image
