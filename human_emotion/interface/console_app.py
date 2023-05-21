@@ -34,10 +34,8 @@ class ConsoleApp:
                 i for i, _ in sorted(enumerate(predictions), key=lambda x: x[1], reverse=True)
             ]
             result = {}
-            top_n_preds_text = list(
-                map(lambda x: self.label_dict_num2text[x], preds_sorted_indices)
-            )[: args.top_n]
             top_n_preds_num = preds_sorted_indices[: args.top_n]
+            top_n_preds_text = list(map(lambda x: self.label_dict_num2text[x], top_n_preds_num))
             dict_labels = top_n_preds_text if args.ret == "text" else top_n_preds_num
             for i, label in enumerate(dict_labels):
                 result[label] = float(preds_sorted[i])
