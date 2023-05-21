@@ -1,0 +1,16 @@
+services:
+
+  esense:
+    image: esense-ai-python-django
+    hostname: esense
+    container_name: esense
+    ports:
+        - '8000:8000'
+    environment:
+        - MODEL_PATH=/tmp/esense/files/models/model.h5
+        - CONFIG_PATH=/tmp/esense/files/config/config.json
+        - IMAGE_INPUT_DIR=/tmp/esense/files/images
+        - JSON_OUTPUT_DIR=/tmp/esense/files/json
+
+volumes:
+    - "/Users/fafa/temp:/tmp/esense/files"
