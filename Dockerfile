@@ -16,8 +16,8 @@ COPY models/ models/
 
 ENV MODEL_PATH="../models/model.h5"
 ENV CONFIG_PATH="../config.json"
-ENV IMAGE_INPUT_DIR = "../input_images/"
-ENV JSON_OUTPUT_DIR = "../output_json/"
+ENV IMAGE_INPUT_DIR="../input_images/"
+ENV JSON_OUTPUT_DIR="../output_json/"
 
 EXPOSE 8000
 
