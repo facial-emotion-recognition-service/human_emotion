@@ -7,10 +7,10 @@ services:
     ports:
         - '8000:8000'
     environment:
-        - MODEL_PATH=/emosense/models/model.h5
-        - CONFIG_PATH=/emosense/config.json
-        - IMAGE_INPUT_DIR=/emosense/images
-        - JSON_OUTPUT_DIR=/emosense/json
+        - MODEL_PATH=/temp/models/model.h5
+        - CONFIG_PATH=/temp/config/config.json
+        - IMAGE_INPUT_DIR=/temp/images
+        - JSON_OUTPUT_DIR=/temp/json
 
     volumes:
-      - /Users/fafa/temp:/emosense/
+      - /Users/fafa/temp:/temp
