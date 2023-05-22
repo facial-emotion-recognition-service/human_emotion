@@ -18,7 +18,7 @@ def get_face_emotions(model, face_image, top_n=1, ret="text"):
             "prediction": (
                 list(
                     map(
-                        lambda x: model.label_dict_num2text[x],
+                        lambda x: model.labels_num2text[x],
                         preds_sorted_indices,
                     )
                 )[:top_n]
