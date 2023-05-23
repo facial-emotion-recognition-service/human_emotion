@@ -14,9 +14,7 @@ class AppLogic:
         self.json_output_dir = pathlib.Path(json_output_dir)
 
         self.labels_text2num = config_data["labels_text2num"]
-        self.labels_num2text = {}
-        for key, value in self.labels_text2num.items():
-            self.labels_num2text[value] = key
+        self.labels_num2text = {v: k for k, v in self.labels_text2num.items()}
 
     def get_face_emotions(self, face_image_name, top_n, ret):
         img_path = pathlib.Path(self.image_input_dir, face_image_name)
