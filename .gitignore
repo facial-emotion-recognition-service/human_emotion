@@ -17,3 +17,4 @@ models/**
 images/**
 input_images/**
 output_json/**
+docker_volume/

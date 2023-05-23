@@ -17,5 +17,4 @@ COPY models/ models/
 EXPOSE 8000
 
 WORKDIR /emosense/interface
-#python manage.py runserver 0.0.0.0:8000
 CMD ["python", "main_server.py", "runserver", "0.0.0.0:8000"]
