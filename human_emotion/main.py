@@ -1,6 +1,5 @@
 import os
-from core.model import model
-from human_emotion.core.predictors import get_face_emotions, get_image_emotions
+from human_emotion.core.predictors import Predictor
 import json
 
 if __name__ == "__main__":
@@ -10,8 +9,8 @@ if __name__ == "__main__":
     with open(config_path, "r") as json_config_file:
         config_data = json.load(json_config_file)
 
-    model_ = model(model_path, config_data)
+    predictor = Predictor(model_path, config_data)
 
-    img_path = "raw_data/faces/anger/2Q__ (1)_face.png"
-    print(get_face_emotions(model_, img_path))
-    # print(get_image_emotions(model_,img_path))
+    img_path = "../input_images/8_hap.png"
+    print(predictor.get_face_image_emotions(img_path))
+    # print(predictor.get_image_emotions(img_path))

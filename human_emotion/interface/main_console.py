@@ -19,4 +19,4 @@ if __name__ == "__main__":
     args = argsProvider.getArgs()
 
     app = AppLogic(model_path, image_input_dir, json_output_dir, model_config)
-    app.get_face_emotions(args.face_image_file, args.top_n, args.ret)
+    app.get_face_emotions_from_file(args.face_image_file, args.top_n, args.ret)
