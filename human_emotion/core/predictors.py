@@ -1,3 +1,8 @@
+"""Provides an API for getting predictions from the model in various formats.
+
+Provides an API for getting various types of pre-formatted predictions from the
+underlying model for various types of input data.
+"""
 import human_emotion.core.extraction as extraction
 from human_emotion.core.model import Model
 

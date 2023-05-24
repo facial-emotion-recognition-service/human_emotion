@@ -1,3 +1,8 @@
+"""Provides an abstraction of the model for the rest of the application.
+
+Provides API for interacting with the trained model, including loading and
+preprocessing images, and making predictions.
+"""
 import tensorflow as tf
 import numpy as np
 
