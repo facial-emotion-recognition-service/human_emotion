@@ -10,9 +10,7 @@ RUN pip install -r requirements.txt
 
 RUN mkdir output_json
 COPY human_emotion .
-COPY config.json .
-COPY input_images/ input_images/
-COPY models/ models/
+# COPY config.json .
 
 EXPOSE 8000
 
