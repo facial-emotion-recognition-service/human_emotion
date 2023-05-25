@@ -1,0 +1,15 @@
+services:
+
+  esense:
+    image: emosense
+    hostname: emosense
+    container_name: emosense
+    ports:
+        - '8000:8000'
+    environment:
+        - MODEL_PATH=/esense_files/models/model.h5
+        - CONFIG_PATH=/esense_files/config/config.json
+        - IMAGE_INPUT_DIR=/esense_files/input_images
+        - JSON_OUTPUT_DIR=/esense_files/output_json
+    volumes:
+      - ./docker_volume:/esense_files

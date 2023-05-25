@@ -17,7 +17,7 @@ class ConsoleApp:
         self.image_input_dir = pathlib.Path(image_input_dir)
         self.json_output_dir = pathlib.Path(json_output_dir)
 
-        self.label_dict_text2num = config_data["label_dict_text2num"]
+        self.label_dict_text2num = config_data["labels_text2num"]
         self.label_dict_num2text = {}
         for key, value in self.label_dict_text2num.items():
             self.label_dict_num2text[value] = key
