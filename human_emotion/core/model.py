@@ -64,6 +64,7 @@ class Model:
 
         Returns:
             The model's predictions for the image as a numpy array containing a
-            dict of probabilities for each emotion.
+            single-element array of an array of the probabilities for each
+            emotion label.
         """
-        return self._model.predict(img_array)
+        return self._model.predict(img_array)[0]
