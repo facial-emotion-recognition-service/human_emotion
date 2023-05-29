@@ -63,8 +63,7 @@ class Model:
             img_array: Image as a numpy array, preprocessed to suit the model.
 
         Returns:
-            The model's predictions for the image as a numpy array containing a
-            single-element array of an array of the probabilities for each
-            emotion label.
+            The model's predictions for the image as a numpy array containing an
+            array of the probabilities for each emotion label.
         """
         return self._model.predict(img_array)[0]

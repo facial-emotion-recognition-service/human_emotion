@@ -36,7 +36,7 @@ class Predictor:
     # and merged with get_face_image_emotions().
 
     def _get_face_emotions(self, face, top_n=1, ret="text"):
-        predictions = self.model.predict(face)[0]
+        predictions = self.model.predict(face)
         preds_sorted = sorted(predictions, reverse=True)
         preds_sorted_indices = [
             i
