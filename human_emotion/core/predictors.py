@@ -1,51 +1,86 @@
+"""Provides an API for getting predictions from the model in various formats.
+
+Provides an API for getting various types of pre-formatted predictions from the
+underlying model for various types of input data.
+"""
 import human_emotion.core.extraction as extraction
+import human_emotion.core.model as model
 
 
-def get_face_emotions(model, face_image, top_n=1, ret="text"):
-    """Returns a list of tuples for the top N emotions of a single face that is
-    already isolated (but not the correct size)
-    See get_face_emotions for function of top_n and ret parameters."""
-    img = model.preprocess(face_image)
-    predictions = model.predict(img)
-    preds_sorted_indices = [
-        i
-        for i, _ in sorted(
-            enumerate(predictions), key=lambda x: x[1], reverse=True
-        )
-    ]
-    if ret == "text":
-        return {
-            "prediction": (
-                list(
-                    map(
-                        lambda x: model.label_dict_num2text[x],
-                        preds_sorted_indices,
-                    )
-                )[:top_n]
+class Predictor:
+    def __init__(self, model_path, config_data):
+        self.model = model.Model(model_path, config_data)
+
+    def get_face_image_emotions(self, face_image_file, top_n=1, ret="text"):
+        """Returns the top n emotions for an image of a single, isolated face.
+
+        Retrieves the top n emotions from an image of a single, isolated face,
+        along with their probabilities.
+
+        Args:
+            face_image_file: Path to the face image file.
+            top_n: Number of top emotions to return.
+            ret: Label type for the returned dict. One of "text" or "num".
+
+        Returns:
+            A dict mapping the top n emotions to their probabilities.
+        """
+        img_array = model.preprocess_file(face_image_file)
+        result = self._get_face_emotions(img_array, top_n, ret)
+
+        return result
+
+    # TODO(https://trello.com/c/p9RyBsxE): Refactor once extraction is done.
+    # This is an "internal" (private, or rather: protected) method put in place
+    # only for compatibility with Nathan's WiP on extraction. To be refactored
+    # and merged with get_face_image_emotions().
+
+    def _get_face_emotions(self, face, top_n=1, ret="text"):
+        predictions = self.model.predict(face)
+        preds_sorted = sorted(predictions, reverse=True)
+        preds_sorted_indices = [
+            i
+            for i, _ in sorted(
+                enumerate(predictions), key=lambda x: x[1], reverse=True
             )
+        ]
+        top_n_preds_num = preds_sorted_indices[:top_n]
+        top_n_preds_text = list(
+            map(lambda x: self.model.labels_num2text[x], top_n_preds_num)
+        )
+        dict_labels = top_n_preds_text if ret == "text" else top_n_preds_num
+        result = {
+            label: float(preds_sorted[i]) for i, label in enumerate(dict_labels)
         }
-    elif ret == "num":
-        return {"prediction": preds_sorted_indices[:top_n]}
 
+        return result
 
-def get_image_emotions(model, image, top_n=1, ret="text"):
-    """Returns a list of dicts containing  the top N emotions for all faces in an image.
-    Also contains the the coords for each face.
-    The first value of the tuple is an int or string. Defined by the ret parameter.
-    If ret = text, the string will be the emotion (eg “happy”)
-    If ret = num, the ,mapping between int and emotion can be gotten from the results of get_emo_map
-    """
-    face_emotions = []
+    def get_image_emotions(self, image_file, top_n=1, ret="text"):
+        """Returns the top n emotions for all deteceted faces in an image.
 
-    face_coords, image = extraction.extract_faces(image)
-    if face_coords:
+        Retrieves the top n emotions for each face detected in an image file,
+        along with their probabilities and the coordinates of the face.
+
+        Args:
+            image_file: Path to the image file.
+            top_n: Number of top emotions to return.
+            ret: Label type for the returned dict. One of "text" or "num".
+
+        Returns:
+            A list of dictionaries with each element containing a "prediction"
+            and a "coords" item. The former is a dict mapping the top n emotions
+            to their probabilities and the latter contains the coordinates of
+            the face. An empty list is returned if no faces are detected.
+        """
+        face_emotions = []
+
+        face_coords, image = extraction.extract_faces(image_file)
         for x1, x2, y1, y2 in face_coords:
-            face_img = image[x1:x2, y1:y2]
-            face_img = model.preprocess(face_img)
-            predictions = get_face_emotions(model, face_img, top_n, ret)
+            face = image[x1:x2, y1:y2]
+            face_preprocessed = model.preprocess(face)
+            predictions = self.get_face_emotions(face_preprocessed, top_n, ret)
             face_emotions.append(
                 {"prediction": predictions, "coords": (x1, x2, y1, y2)}
             )
 
         return face_emotions
-    return "No faces detected"
