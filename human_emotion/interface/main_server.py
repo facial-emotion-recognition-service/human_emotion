@@ -26,7 +26,7 @@ def getHello(request):
 
 def getEmotionsFromImage(request, face_image_file):
     print("Server.getEmotionsFromImage.name = " + face_image_file)
-    app.get_face_emotions(face_image_file, 8, "text")
+    app.get_face_emotions_from_file(face_image_file, 8, "text")
     return HttpResponse("getEmotionsFromImage " + face_image_file)
 
 
