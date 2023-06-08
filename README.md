@@ -39,8 +39,8 @@ export JSON_OUTPUT_DIR="path to folder where you want JSON files stored"
 1. While in the project's root directory `cd human_emotion/interface` (change the `/` to `\` on Windows).
 2. Run the following command to get help on how to use the console app:
 ```
-python console_app.py --help
+python main_console.py --help
 ```
-**Example:** `python console_app.py --face_image_file "sample_image.png" --ret text --top_n 3` will return the top 3 predicted emotions for the specified image, along with their corresponding probabilities, with the emotion labels presented as text (e.g. "happiness")
+**Example:** `python main_console.py --face_image_file "sample_image.png" --ret text --top_n 3` will return the top 3 predicted emotions for the specified image, along with their corresponding probabilities, with the emotion labels presented as text (e.g. "happiness")
 
 The results are printed out to the console and also written to a JSON file with the same name as the image file. (The file will be overwritten if it already exists).
