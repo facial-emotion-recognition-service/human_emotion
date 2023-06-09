@@ -5,7 +5,7 @@ This is a project to:
 - provide an interface (a console app, an API, and/or a web UI) to be able to use the trained model for inference on any custom image
 
 # 2 Project Structure
-**Note:** This repo may be split in the future to house various components of the proeject separately. This document will be updated accordingly. The project is work in progress, but we will strive to keep this document current.
+**Note:** This repo may be split in the future to house various components of the project separately. This document will be updated accordingly. The project is work in progress, but we will strive to keep this document current.
 
 ## 2.1 The Model
 Currently, model training is performed independently in the Jupyter notebooks under the `notebooks` folder. The model was trained on Google Colab with a GPU back-end. The resulting file containing the trained weights ("the model file") is not uploaded to the code repo as it can get fairly large in size.
@@ -18,7 +18,7 @@ At this point, the console app is only able to predict emotions from a PNG image
 #### Instructions on how to install:
 1. Install python 3.10
 2. Clone this repo
-3. `cd` into the projet directory and `pip install -r requirements.txt`
+3. `cd` into the project directory and `pip install -r requirements.txt`
 4. `mkdir models` and copy the model file (named `model.h5`) into the newly-created folder.  
 Alternatively, name the file _anything_ and put it in _any_ folder, but:
 ```
