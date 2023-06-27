@@ -31,6 +31,20 @@ class Predictor:
         return result
 
     def get_topn_emotions(self, preds, indices, top_n=1, ret="text"):
+        """Returns the top n predicted emotions.
+
+        Retrieves the top n emotions from a list of predictions, in the format
+        specified by the ret argument.
+
+        Args:
+            preds: A sorted list of probabilities in decreasing order.
+            indices: A list of indices corresponding to the probabilities.
+            top_n: Number of top emotions to return.
+            ret: Label type for the returned dict. One of "text" or "num".
+
+        Returns:
+            result: A dict mapping the top n emotions to their probabilities.
+        """
         top_n_preds_num = indices[:top_n]
         top_n_preds_text = list(
             map(lambda x: self.model.labels_num2text[x], top_n_preds_num)
@@ -41,6 +55,19 @@ class Predictor:
         return result
 
     def get_predictions(self, face):
+        """Returns all emotions for a face.
+
+        Retrieves all emotions and corresponding probabilities from a face,
+        sorted in decreasing order of probability.
+
+        Args:
+            face: A numpy array representing a face.
+
+        Returns:
+            preds_sorted: A list of probabilities sorted in decreasing order.
+            preds_sorted_indices: A list of indices corresponding to the sorted
+                probabilities.
+        """
         predictions = self.model.predict(face)
         preds_sorted = sorted(predictions, reverse=True)
 
