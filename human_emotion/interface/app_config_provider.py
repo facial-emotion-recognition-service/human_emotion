@@ -5,8 +5,12 @@ class AppConfigProvider:
     def __init__(self):
         self._model_path = os.environ.get("MODEL_PATH", "../models/model.h5")
         self._config_path = os.environ.get("CONFIG_PATH", "../config.json")
-        self._image_input_dir = os.environ.get("IMAGE_INPUT_DIR")
-        self._json_output_dir = os.environ.get("JSON_OUTPUT_DIR")
+        self._image_input_dir = os.environ.get(
+            "IMAGE_INPUT_DIR", "../input_images/"
+        )
+        self._json_output_dir = os.environ.get(
+            "JSON_OUTPUT_DIR", "../output_json/"
+        )
 
     @property
     def app_config(self):
