@@ -18,7 +18,7 @@ At this point, the console app is only able to predict emotions from a PNG image
 #### Instructions on how to install:
 1. Install python 3.10
 2. Clone this repo
-3. `cd` into the project directory and `pip install -r requirements.txt`
+3. `cd` into the project directory and `pip install -e .`
 4. `mkdir models` and copy the model file (named `model.h5`) into the newly-created folder.  
 Alternatively, name the file _anything_ and put it in _any_ folder, but:
 ```
