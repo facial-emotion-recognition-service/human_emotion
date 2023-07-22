@@ -1,6 +1,9 @@
 # Configuration
 .env
 
+# IDE
+.idea/**
+
 # System files
 *.egg-info
 .coverage
