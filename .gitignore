@@ -1,23 +1,28 @@
 # Configuration
 .env
+.envrc
 
 # IDE
 .idea/**
+.vscode/
 
 # System files
 *.egg-info
 .coverage
 .ipynb_checkpoints
 .DS_Store
+**/__pycache__/
+build/
+dist/
+
+# Models & Data
 raw_data/
 raw_data_fer2013/
 *.csv
-**/__pycache__/
-.vscode/
-build/
-dist/
 models/**
 images/**
 input_images/**
 output_json/**
+
+# Docker
 docker_volume/
